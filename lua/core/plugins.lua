@@ -23,6 +23,14 @@ return require('packer').startup(function(use)
     tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+  } 
+--  use 'neovim/nvim-lspconfig'
+--  use 'hrsh7th/nvim-cmp'
+
  if packer_bootstrap then
  require('packer').sync()
  end

@@ -18,3 +18,5 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+
+vim.keymap.set('n', '<leader>c', ':nmap<CR>')

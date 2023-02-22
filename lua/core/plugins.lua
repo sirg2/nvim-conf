@@ -28,6 +28,15 @@ return require('packer').startup(function(use)
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
   } 
+  -- Bufferline
+  use {
+    "akinsho/nvim-bufferline.lua",
+    event = "BufReadPre",
+    wants = "nvim-web-devicons",
+--    config = function()
+--      require("config.bufferline").setup()
+--    end,
+  }
 --  use 'neovim/nvim-lspconfig'
 --  use 'hrsh7th/nvim-cmp'
 

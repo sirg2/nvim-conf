@@ -17,6 +17,8 @@ vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.scrolloff = 5
+
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>c', ':nmap<CR>')

@@ -23,6 +23,8 @@ vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>c', ':nmap<CR>')
 
+vim.keymap.set('i', '<C-SPACE>', vim.lsp.buf.completion)
+
 
 -- buffers
 vim.keymap.set('n', '<leader>1', ':b 1<CR>')

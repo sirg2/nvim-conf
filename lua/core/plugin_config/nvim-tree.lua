@@ -3,5 +3,5 @@ vim.g.loaded_netrwPlugin = 1
 
 require('nvim-tree').setup()
 
-vim.keymap.set('n', '<leader>n', ':NvimTreeFindFileToggle<CR>')
-vim.keymap.set('n', '<leader>f', ':NvimTreeFocus<CR>')
+vim.keymap.set('n', '<C-n>', ':NvimTreeFindFile<CR>')
+vim.keymap.set('n', '<C-f>', ':NvimTreeFocus<CR>')

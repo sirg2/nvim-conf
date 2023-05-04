@@ -28,6 +28,9 @@ return require('packer').startup(function(use)
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
   } 
+  -- Terminal
+  use 'numToStr/FTerm.nvim'
+
   -- Bufferline
   use {
     "akinsho/nvim-bufferline.lua",

@@ -25,6 +25,9 @@ vim.keymap.set('n', '<leader>c', ':nmap<CR>')
 
 vim.keymap.set('i', '<C-SPACE>', vim.lsp.buf.completion)
 
+-- FTerm
+vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 
 -- buffers
 vim.keymap.set('n', '<leader>1', ':b 1<CR>')

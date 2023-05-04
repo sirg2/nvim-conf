@@ -31,6 +31,28 @@ return require('packer').startup(function(use)
   -- Terminal
   use 'numToStr/FTerm.nvim'
 
+  -- RUST LSP
+  use ({
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup()
+    end
+  })
+  use 'hrsh7th/nvim-cmp'
+  use({
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    after = { 'hrsh7th/nvim-cmp' },
+    requires = { 'hrsh7th/nvim-cmp' },
+  })
+  use 'hrsh7th/vim-vsnip'
+  use 'simrat39/rust-tools.nvim'
+
+  use 'nvim-lua/popup.nvim'
+  -- RUST LSP
+
   -- Bufferline
   use {
     "akinsho/nvim-bufferline.lua",

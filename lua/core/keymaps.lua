@@ -19,11 +19,73 @@ vim.opt.relativenumber = true
 
 vim.opt.scrolloff = 5
 
+vim.opt.ignorecase = true
+
+-- RUST LSP
+vim.o.completeopt = "menuone,noinsert,noselect"
+vim.opt.shortmess = vim.opt.shortmess + "c"
+local opts = {
+  tools = {
+    runnables = {
+    use_telescope = true,
+  },
+  inlay_hints = {
+    auto = true,
+    show_parameter_hints = false,
+    parameter_hints_prefix = "",
+    other_hints_prefix = "",
+  },
+},
+server = {
+  on_attach = on_attach_clangd,
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+    },
+  },
+},
+},
+}
+
+require('rust-tools').setup(opts)
+
+local cmp = require('cmp')
+cmp.setup({
+  preselect = cmp.PreselectMode.None,
+  snippets = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ["<C-P>"] = cmp.mapping.select_prev_item(),
+    ["<C-N>"] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+  },
+
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+    { name = "path" },
+    { name = "buffer" },
+  },
+})
+-- RUST LSP
+
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>c', ':nmap<CR>')
-
-vim.keymap.set('i', '<C-SPACE>', vim.lsp.buf.completion)
 
 -- FTerm
 vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')

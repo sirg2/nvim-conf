@@ -19,6 +19,8 @@ vim.opt.relativenumber = true
 
 vim.opt.scrolloff = 5
 
+vim.o.ignorecase = true
+
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>c', ':nmap<CR>')

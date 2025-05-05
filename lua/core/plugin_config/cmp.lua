@@ -3,7 +3,7 @@ local luasnip = require('luasnip')
 local cmp = require('cmp')
 
 cmp.setup({
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
 
     -- ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-Space>'] = cmp.mapping(function(fallback)
@@ -49,7 +49,7 @@ cmp.setup({
     end, { "i", "s" }),
 
     -- ... Your other mappings ...
-  },
+  }),
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)

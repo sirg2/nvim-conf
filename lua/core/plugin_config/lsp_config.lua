@@ -9,7 +9,7 @@ require('mason-lspconfig').setup({
 -- -- after the language server attaches to the current buffer
 local on_attach_clangd = function(client, bufnr)
 --   -- Enable completion triggered by <c-x><c-o>
-     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+     vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
      -- Mappings.
      -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -46,7 +46,7 @@ end
 -- python
 local on_attach_py = function(client, bufnr)
 --   -- Enable completion triggered by <c-x><c-o>
-     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+     vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
      -- Mappings.
      -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -72,7 +72,7 @@ end
 -- LUA
 local on_attach_lua = function(client, bufnr)
 --   -- Enable completion triggered by <c-x><c-o>
-     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+     vim.bo[bufnr].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
      -- Mappings.
      -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -97,15 +97,26 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require('lspconfig').clangd.setup {
+vim.lsp.config.clangd = {
+  cmd = { 'clangd' },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  root_markers = { '.clangd', '.clang-tidy', '.clang-format', 'compile_commands.json', 'compile_flags.txt', 'configure.ac', '.git' },
   on_attach = on_attach_clangd,
   capabilities = capabilities,
 }
-require('lspconfig').pyright.setup {
+
+vim.lsp.config.pyright = {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', 'pyrightconfig.json', '.git' },
   on_attach = on_attach_py,
   capabilities = capabilities,
 }
-require('lspconfig').lua_ls.setup {
+
+vim.lsp.config.lua_ls = {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' },
   on_attach = on_attach_lua,
   capabilities = capabilities,
 }
